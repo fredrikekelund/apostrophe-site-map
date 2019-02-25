@@ -326,9 +326,13 @@ module.exports = {
               xml += ' ' + a + '="' + self.apos.utils.escapeHtml(av) + '"';
             });
           }
-          xml += '>';
-          xml += self.stringify(v || '');
-          xml += '</' + k + '>\n';
+          if (k === 'xhtml:link') {
+            xml += ' />\n';
+          } else {
+            xml += '>';
+            xml += self.stringify(v || '');
+            xml += '</' + k + '>\n';
+          }
         }
       });
       return xml;
